@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  firebase:
+    build:
+      context: ./docker/firebase
+    volumes:
+      - ./firebase/emulators/:/opt/workspace
+      - ./firebase/bin/:/root/.cached
+      - ./firebase/config/:/root/.config
+    ports:
+      - 4000:4000 # Emulator Suite UI
+      - 5000:5000 # Firebase Hosting
+      - 5001:5001 # Cloud Functions
+      - 9000:9000 # Realtime Database
+      - 8080:8080 # Cloud Firestore
+      - 8085:8085 # Cloud Pub/Sub
+      - 9199:9199 # Cloud Storage
+      - 0900:9099 # Auth
+    working_dir: /opt/workspace
+    command: bash
+    tty: true
